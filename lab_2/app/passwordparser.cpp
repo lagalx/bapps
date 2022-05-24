@@ -1,22 +1,33 @@
 #include "passwordparser.h"
+
+#include "crypton.h"
+
 using PP = PasswordParser;
+using Cry = Crypton;
+using QBA = QByteArray;
+
+const QString PP::PASSWORDS_FILE = "passwords.lock";
 
 PP::PasswordParser(const QString password, const QString filePath) {
   this->password = password;
+  this->cry = Cry(password);
   this->file.setFileName(filePath);
 }
-
-const QString PP::PASSWORDS_FILE = "passwords.lock";
 
 void PP::createPasswordsFile() {
   file.open(QIODevice::WriteOnly);
 
-  file.write((password + "\n").toUtf8());
+  auto toFile = (password + "\n");
+
+  file.write(cry.encrypt(toFile).toUtf8());
   file.close();
 }
 
-const QString PP::getPasswordFromFile() {
+const QString PP::decryptFile() {
   file.open(QIODevice::ReadOnly);
 
-  return file.readLine().trimmed();
+  auto fromFile = file.readAll();
+  return cry.decrypt(fromFile);
 }
+
+const QString PP::getPassword() { return decryptFile().split("\n")[0]; }

@@ -10,16 +10,21 @@ CONFIG += console
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    crypton.cpp \
     main.cpp \
     mainwindow.cpp \
-    passwordparser.cpp
+    passwordparser.cpp \
+    passwordswindow.cpp
 
 HEADERS += \
+    crypton.h \
     mainwindow.h \
-    passwordparser.h
+    passwordparser.h \
+    passwordswindow.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    passwordswindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

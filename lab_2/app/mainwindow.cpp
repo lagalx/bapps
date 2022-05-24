@@ -11,6 +11,7 @@ using PP = PasswordParser;
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
   ui->setupUi(this);
+  pWindow = new PWindow();
 }
 
 MainWindow::~MainWindow() { delete ui; }
@@ -23,10 +24,15 @@ void MainWindow::on_loginButton_clicked() {
     pp.createPasswordsFile();
     QMessageBox::information(this, "Login", "Password has been created");
   }
-  const auto GOOD_PASSWORD = pp.getPasswordFromFile();
+
+  const auto GOOD_PASSWORD = pp.getPassword();
+
   if (PASSWORD == GOOD_PASSWORD) {
-    QMessageBox::information(this, "Login", "U are voshli");
+    pWindow->show();
+    this->close();
+    return;
   }
+
   QMessageBox::warning(this, "Login", "Wrong password");
 }
 

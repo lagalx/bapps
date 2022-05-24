@@ -3,6 +3,10 @@
 
 #include <QMainWindow>
 
+#include "passwordswindow.h"
+
+using PWindow = PasswordsWindow;
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -19,9 +23,10 @@ class MainWindow : public QMainWindow {
  private slots:
   void on_loginButton_clicked();
 
-  void on_passwordEdit_textChanged(const QString &arg1);
+  void on_passwordEdit_textChanged(const QString &text);
 
  private:
   Ui::MainWindow *ui;
+  PWindow *pWindow;
 };
 #endif  // MAINWINDOW_H
