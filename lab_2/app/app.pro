@@ -11,10 +11,12 @@ CONFIG += console
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    passwordparser.cpp
 
 HEADERS += \
-    mainwindow.h
+    mainwindow.h \
+    passwordparser.h
 
 FORMS += \
     mainwindow.ui
