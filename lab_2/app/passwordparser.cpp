@@ -53,6 +53,7 @@ QJA PP::getJson() {
 void PP::updateFile(QJO jObj) {
   QFile file(filePath);
   addJsonObj(jObj);
+
   QString jsonStr(QJD(jArr).toJson(QJD::Compact));
   auto toFile = password + "\n" + jsonStr;
 
@@ -65,6 +66,24 @@ QJO PP::getQJO(const QString url, const QString login, const QString password) {
   return QJO{{DATA_KEYS.URL, url},
              {DATA_KEYS.LOGIN, login},
              {DATA_KEYS.PASSWORD, password}};
+}
+
+const QJO PP::cryptoQJO(const QJO jObj) {
+  const auto login = jObj.value(DATA_KEYS.LOGIN).toString();
+  const auto password = jObj.value(DATA_KEYS.PASSWORD).toString();
+  const auto url = jObj.value(DATA_KEYS.URL).toString();
+
+  auto encrypted = getQJO(url, cry.encrypt(login), cry.encrypt(password));
+  return encrypted;
+}
+
+const QJO PP::plainQJO(const QJO jObj) {
+  const auto login = jObj.value(DATA_KEYS.LOGIN).toString();
+  const auto password = jObj.value(DATA_KEYS.PASSWORD).toString();
+  const auto url = jObj.value(DATA_KEYS.URL).toString();
+
+  auto decrypted = getQJO(url, cry.decrypt(login), cry.decrypt(password));
+  return decrypted;
 }
 
 void PP::addJsonObj(const QJO jObj) { jArr.append(jObj); }

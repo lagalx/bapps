@@ -23,7 +23,7 @@ PasswordsWindow::~PasswordsWindow() { delete ui; }
 
 void PasswordsWindow::addListItem(QJO jObj) {
   auto i = new QListWidgetItem();
-  auto w = new ListItemWidget(this);
+  auto w = new ListItemWidget(pp, this);
 
   w->setData(jObj);
   i->setSizeHint(w->sizeHint());
@@ -37,8 +37,9 @@ void PasswordsWindow::on_addButton_clicked() {
   dialog.setModal(true);
   if (dialog.exec() == QDialog::Accepted) {
     auto data = dialog.getDialogData();
-    addListItem(data);
+    auto eData = pp.cryptoQJO(data);
+    addListItem(eData);
 
-    pp.updateFile(data);
+    pp.updateFile(eData);
   }
 }

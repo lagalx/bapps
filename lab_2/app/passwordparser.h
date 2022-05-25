@@ -15,13 +15,11 @@ using QJA = QJsonArray;
 using QJD = QJsonDocument;
 using QJO = QJsonObject;
 
-
 struct DataKeys {
   QString LOGIN;
   QString PASSWORD;
   QString URL;
 };
-
 
 class PasswordParser {
  public:
@@ -43,8 +41,12 @@ class PasswordParser {
   QJA getJson();
   void updateFile(QJO jObj);
 
-  static QJO getQJO(const QString url,const QString login,const QString password);
+  static QJO getQJO(const QString url, const QString login,
+                    const QString password);
   void addJsonObj(const QJO jObj);
+
+  const QJO cryptoQJO(const QJO jObj);
+  const QJO plainQJO(const QJO jObj);
 };
 
 #endif  // PASSWORDPARSER_H

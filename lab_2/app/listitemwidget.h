@@ -5,22 +5,28 @@
 
 #include "passwordparser.h"
 
+using PP = PasswordParser;
+
 namespace Ui {
 class ListItemWidget;
 }
 
-class ListItemWidget : public QWidget
-{
-    Q_OBJECT
+class ListItemWidget : public QWidget {
+  Q_OBJECT
 
-public:
-    explicit ListItemWidget(QWidget *parent = nullptr);
-    ~ListItemWidget();
+ public:
+  explicit ListItemWidget(PP &pp, QWidget *parent = nullptr);
+  ~ListItemWidget();
+  PP pp;
+  bool isShowed;
 
-    void setData(const QJO jObj);
+  void setData(const QJO jObj);
 
-private:
-    Ui::ListItemWidget *ui;
+ private slots:
+  void on_showDataButton_clicked();
+
+ private:
+  Ui::ListItemWidget *ui;
 };
 
-#endif // LISTITEMWIDGET_H
+#endif  // LISTITEMWIDGET_H
