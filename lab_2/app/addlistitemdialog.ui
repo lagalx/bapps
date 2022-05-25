@@ -44,6 +44,9 @@
       <string notr="true">padding: 10px 20px;
 </string>
      </property>
+     <property name="echoMode">
+      <enum>QLineEdit::Password</enum>
+     </property>
      <property name="placeholderText">
       <string>Login</string>
      </property>
@@ -54,6 +57,9 @@
      <property name="styleSheet">
       <string notr="true">padding: 10px 20px;
 </string>
+     </property>
+     <property name="echoMode">
+      <enum>QLineEdit::Password</enum>
      </property>
      <property name="placeholderText">
       <string>Password</string>
