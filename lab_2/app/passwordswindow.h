@@ -3,20 +3,28 @@
 
 #include <QMainWindow>
 
+#include "passwordparser.h"
+
+using PP = PasswordParser;
+
 namespace Ui {
 class PasswordsWindow;
 }
 
-class PasswordsWindow : public QMainWindow
-{
-    Q_OBJECT
+class PasswordsWindow : public QMainWindow {
+  Q_OBJECT
 
-public:
-    explicit PasswordsWindow(QWidget *parent = nullptr);
-    ~PasswordsWindow();
+ public:
+  explicit PasswordsWindow(PP& pp, QWidget *parent = nullptr);
+  ~PasswordsWindow();
+  PP pp;
+  void addListItem(QJO jObj);
 
-private:
-    Ui::PasswordsWindow *ui;
+ private slots:
+  void on_addButton_clicked();
+
+ private:
+  Ui::PasswordsWindow *ui;
 };
 
-#endif // PASSWORDSWINDOW_H
+#endif  // PASSWORDSWINDOW_H
