@@ -43,3 +43,18 @@ void PasswordsWindow::on_addButton_clicked() {
     pp.updateFile(eData);
   }
 }
+
+void PasswordsWindow::on_searchEdit_textEdited(const QString& text) {
+  auto w = ui->passwordsListWidget;
+
+  for (auto i = 0; i < w->count(); i++) {
+    auto switch_ = true;
+    auto item = w->item(i);
+    auto itemWidget = dynamic_cast<ListItemWidget*>(
+        ui->passwordsListWidget->itemWidget(item));
+    if (itemWidget->getData().startsWith(text)) {
+      switch_ = false;
+    }
+    item->setHidden(switch_);
+  }
+}

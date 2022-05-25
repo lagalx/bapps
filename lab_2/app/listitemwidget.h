@@ -21,6 +21,7 @@ class ListItemWidget : public QWidget {
   bool isShowed;
 
   void setData(const QJO jObj);
+  const QString getData();
 
  private slots:
   void on_showDataButton_clicked();

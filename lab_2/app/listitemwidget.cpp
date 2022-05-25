@@ -23,6 +23,10 @@ void LIW::setData(const QJO jObj) {
   ui->urlEdit->setText(url.toString());
 }
 
+const QString LIW::getData(){
+    return ui->urlEdit->text();
+}
+
 void ListItemWidget::on_showDataButton_clicked() {
   auto login = ui->loginEdit->text();
   auto password = ui->passwordEdit->text();

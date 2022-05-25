@@ -15,13 +15,15 @@ class PasswordsWindow : public QMainWindow {
   Q_OBJECT
 
  public:
-  explicit PasswordsWindow(PP& pp, QWidget *parent = nullptr);
+  explicit PasswordsWindow(PP &pp, QWidget *parent = nullptr);
   ~PasswordsWindow();
   PP pp;
   void addListItem(QJO jObj);
 
  private slots:
   void on_addButton_clicked();
+
+  void on_searchEdit_textEdited(const QString &text);
 
  private:
   Ui::PasswordsWindow *ui;
