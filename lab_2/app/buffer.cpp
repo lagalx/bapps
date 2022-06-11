@@ -1,7 +1,7 @@
 #include "buffer.h"
 
 #include <QAbstractEventDispatcher>
-
+#include <QSettings>
 #include "eventfilter.h"
 
 const int Buffer::HOTKEY_CODE = 100;
@@ -62,8 +62,26 @@ void Buffer::setEventListner(const QString propText) {
 }
 
 const QList<QString> Buffer::getAcceptedApps() {
-  QList<QString> res;
-  return res;
+
+    QSettings browsers("HKEY_LOCAL_MACHINE\\SOFTWARE\\Clients\\StartMenuInternet",
+    QSettings::NativeFormat);
+    QStringList val = browsers.childGroups();
+
+    QStringList processBrowser;
+    for(auto i:val){
+        QString path = "HKEY_LOCAL_MACHINE\\SOFTWARE\\Clients\\StartMenuInternet\\"+i+"\\shell\\open\\command";
+        QSettings openBrowser(path,QSettings::NativeFormat);
+        auto exeBrowser = openBrowser.value(".");
+        auto exeBrowserstr= exeBrowser.toString();
+        exeBrowserstr.chop(1);
+        auto finalBrowser = exeBrowserstr.split("\\").back().split('.').front();
+        processBrowser.append(finalBrowser);
+    }
+
+
+  return processBrowser;
 }
 
-const bool Buffer::isAppAccepted(const QString appName) { return true; }
+const bool Buffer::isAppAccepted(const QString appName) {
+
+    return  getAcceptedApps().contains(appName); }

@@ -14,34 +14,11 @@
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="5">
-    <widget class="QPushButton" name="copyUrlButton">
-     <property name="maximumSize">
-      <size>
-       <width>24</width>
-       <height>16777215</height>
-      </size>
-     </property>
-     <property name="baseSize">
-      <size>
-       <width>10</width>
-       <height>10</height>
-      </size>
-     </property>
-     <property name="text">
-      <string>C</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="1" colspan="3">
-    <widget class="QLineEdit" name="urlEdit">
-     <property name="readOnly">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
    <item row="1" column="1">
     <widget class="QLineEdit" name="loginEdit">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="frame">
       <bool>true</bool>
      </property>
@@ -65,6 +42,9 @@
    </item>
    <item row="1" column="3">
     <widget class="QLineEdit" name="passwordEdit">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="readOnly">
       <bool>true</bool>
      </property>
@@ -105,6 +85,16 @@
      </property>
      <property name="text">
       <string>C</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1" colspan="5">
+    <widget class="QLineEdit" name="urlEdit">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
      </property>
     </widget>
    </item>
