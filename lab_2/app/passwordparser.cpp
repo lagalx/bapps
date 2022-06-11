@@ -89,6 +89,4 @@ const QJO PP::plainQJO(const QJO jObj) {
 
 void PP::addJsonObj(const QJO jObj) { jArr.append(jObj); }
 
-const QString PP::decryptStr(const QString text){
-    return cry.decrypt(text);
-}
+const QString PP::decryptStr(const QString text) { return cry.decrypt(text); }

@@ -8,8 +8,10 @@
 
 #include "buffer.h"
 
-EventFilter::EventFilter(const QString propText, PP pp) { this->propText = propText;
-                                                        this->pp =pp;}
+EventFilter::EventFilter(const QString propText, PP pp) {
+  this->propText = propText;
+  this->pp = pp;
+}
 bool EventFilter::nativeEventFilter(const QByteArray &eventType, void *message,
                                     qintptr *result) {
   Q_UNUSED(eventType)

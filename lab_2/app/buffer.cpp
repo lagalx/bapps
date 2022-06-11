@@ -58,7 +58,7 @@ const bool Buffer::sendInput(const QString text) {
 
 void Buffer::setEventListner(const QString propText, const PP pp) {
   QAbstractEventDispatcher::instance()->installNativeEventFilter(
-      new EventFilter(propText,pp));
+      new EventFilter(propText, pp));
 }
 
 const QList<QString> Buffer::getAcceptedApps() {

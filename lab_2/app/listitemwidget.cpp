@@ -51,23 +51,20 @@ void ListItemWidget::on_copyLoginButton_clicked() {
   auto login = ui->loginEdit->text();
   auto password = ui->passwordEdit->text();
   auto url = ui->urlEdit->text();
-  auto obj = pp.getQJO(url,login,password);
-  obj = isShowed? pp.cryptoQJO(obj): obj;
+  auto obj = pp.getQJO(url, login, password);
+  obj = isShowed ? pp.cryptoQJO(obj) : obj;
 
-  const auto text  =obj.value(pp.DATA_KEYS.LOGIN).toString();
+  const auto text = obj.value(pp.DATA_KEYS.LOGIN).toString();
   Buffer::setEventListner(text, pp);
 }
 
-void ListItemWidget::on_copyPasswordButton_clicked()
-{
-    auto login = ui->loginEdit->text();
-    auto password = ui->passwordEdit->text();
-    auto url = ui->urlEdit->text();
-    auto obj = pp.getQJO(url,login,password);
-    obj = isShowed? pp.cryptoQJO(obj): obj;
+void ListItemWidget::on_copyPasswordButton_clicked() {
+  auto login = ui->loginEdit->text();
+  auto password = ui->passwordEdit->text();
+  auto url = ui->urlEdit->text();
+  auto obj = pp.getQJO(url, login, password);
+  obj = isShowed ? pp.cryptoQJO(obj) : obj;
 
-
-    const auto text  =obj.value(pp.DATA_KEYS.PASSWORD).toString();
-    Buffer::setEventListner(text, pp);
+  const auto text = obj.value(pp.DATA_KEYS.PASSWORD).toString();
+  Buffer::setEventListner(text, pp);
 }
-
