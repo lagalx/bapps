@@ -45,6 +45,7 @@ QJA PP::getJson() {
   jsonLines.pop_front();
 
   QJD jDoc = QJD::fromJson(jsonLines.join("").toUtf8());
+  // qDebug() << jDoc;
   QJA jArr = jDoc.QJD::array();
 
   return jArr;

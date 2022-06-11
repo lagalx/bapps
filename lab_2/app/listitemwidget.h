@@ -26,7 +26,9 @@ class ListItemWidget : public QWidget {
  private slots:
   void on_showDataButton_clicked();
 
- private:
+  void on_copyLoginButton_clicked();
+
+private:
   Ui::ListItemWidget *ui;
 };
 

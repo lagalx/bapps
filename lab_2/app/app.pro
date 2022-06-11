@@ -3,7 +3,6 @@ QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++17
-CONFIG += console
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -11,7 +10,9 @@ CONFIG += console
 
 SOURCES += \
     addlistitemdialog.cpp \
+    buffer.cpp \
     crypton.cpp \
+    eventfilter.cpp \
     listitemwidget.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -20,7 +21,9 @@ SOURCES += \
 
 HEADERS += \
     addlistitemdialog.h \
+    buffer.h \
     crypton.h \
+    eventfilter.h \
     listitemwidget.h \
     mainwindow.h \
     passwordparser.h \
@@ -97,3 +100,6 @@ qt_secret.files += $$files($$QT_SECRET_BUILD/*.dll)
 qt_secret.path = $$DESTDIR
 debug_protector.path = $$DESTDIR
 
+win32-msvc*{
+    LIBS += -luser32
+}

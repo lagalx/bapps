@@ -1,9 +1,15 @@
+// clang-format off
+#include <windows.h>
+// clang-format on
+
 #include "mainwindow.h"
 
 #include <QFile>
 #include <QMessageBox>
+#include <QClipboard>
 
 #include "passwordparser.h"
+#include "buffer.h"
 #include "ui_mainwindow.h"
 
 using PP = PasswordParser;
@@ -28,7 +34,8 @@ void MainWindow::on_loginButton_clicked() {
   if (PASSWORD == GOOD_PASSWORD) {
     pWindow = new PasswordsWindow(pp);
     pWindow->show();
-    this->close();
+
+    // this->close();
 
     return;
   }

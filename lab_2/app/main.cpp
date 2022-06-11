@@ -16,8 +16,11 @@
 #include <QPalette>
 #include <QProcess>
 #include <QString>
+#include <QAbstractEventDispatcher>
 
 #include "mainwindow.h"
+#include "buffer.h"
+#include "eventfilter.h"
 
 typedef unsigned long long QWORD;
 
@@ -98,14 +101,17 @@ int main(int argc, char *argv[]) {
   a.setStyle("Fusion");
 
   MainWindow w;
+
   w.show();
 
-  auto p = startSattelite();
+  Buffer::registerHotKey(w.winId(),'D');
 
-  if (isDebuggerPresent()) {  // TODO on Release | Add isAppPatched
-    killPD(p);
-    exit(-1);
-  }
+  //  auto p = startSattelite();
 
-  return a.exec(), killPD(p);
+  //  if (isDebuggerPresent()) {  // TODO on Release | Add isAppPatched
+  //    killPD(p);
+  //    exit(-1);
+  //  }
+
+  return a.exec();  //, killPD(p);
 }

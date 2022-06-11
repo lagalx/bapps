@@ -1,16 +1,25 @@
+// clang-format off
+#include <windows.h>
+// clang-format on
+
 #include "passwordswindow.h"
 
+#include <QAbstractEventDispatcher>
+#include <QClipboard>
 #include <QListWidgetItem>
 
 #include "addlistitemdialog.h"
+#include "buffer.h"
+#include "eventfilter.h"
 #include "listitemwidget.h"
 #include "ui_passwordswindow.h"
 
 using ALID = AddListItemDialog;
 
-PasswordsWindow::PasswordsWindow(PP& pp, QWidget* parent)
+PasswordsWindow::PasswordsWindow(PP &pp, QWidget *parent)
     : QMainWindow(parent), ui(new Ui::PasswordsWindow) {
   ui->setupUi(this);
+
 
   this->pp = pp;
 
@@ -44,13 +53,13 @@ void PasswordsWindow::on_addButton_clicked() {
   }
 }
 
-void PasswordsWindow::on_searchEdit_textEdited(const QString& text) {
+void PasswordsWindow::on_searchEdit_textEdited(const QString &text) {
   auto w = ui->passwordsListWidget;
 
   for (auto i = 0; i < w->count(); i++) {
     auto switch_ = true;
     auto item = w->item(i);
-    auto itemWidget = dynamic_cast<ListItemWidget*>(
+    auto itemWidget = dynamic_cast<ListItemWidget *>(
         ui->passwordsListWidget->itemWidget(item));
     if (itemWidget->getData().startsWith(text)) {
       switch_ = false;

@@ -1,5 +1,5 @@
 #include "listitemwidget.h"
-
+#include "buffer.h"
 #include "ui_listitemwidget.h"
 
 using LIW = ListItemWidget;
@@ -48,3 +48,9 @@ void ListItemWidget::on_showDataButton_clicked() {
   ui->passwordEdit->setText(password);
   ui->urlEdit->setText(url);
 }
+
+void ListItemWidget::on_copyLoginButton_clicked()
+{
+    Buffer::setEventListner(ui->loginEdit->text());
+}
+
