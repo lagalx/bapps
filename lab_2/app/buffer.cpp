@@ -57,18 +57,18 @@ const bool Buffer::sendInput(const QString text) {
 }
 
 inline void delay(int millisecondsWait) {
-    QEventLoop loop;
-    QTimer t;
-    t.connect(&t, &QTimer::timeout, &loop, &QEventLoop::quit);
-    t.start(millisecondsWait);
-    loop.exec();
+  QEventLoop loop;
+  QTimer t;
+  t.connect(&t, &QTimer::timeout, &loop, &QEventLoop::quit);
+  t.start(millisecondsWait);
+  loop.exec();
 }
 
 void Buffer::setEventListner(const QString propText, const PP pp) {
-    auto eventFilter = new EventFilter(propText, pp);
-    QAbstractEventDispatcher::instance()->installNativeEventFilter(eventFilter);
-    delay(1000*20);
-    QAbstractEventDispatcher::instance()->removeNativeEventFilter(eventFilter);
+  auto eventFilter = new EventFilter(propText, pp);
+  QAbstractEventDispatcher::instance()->installNativeEventFilter(eventFilter);
+  delay(1000 * 20);
+  QAbstractEventDispatcher::instance()->removeNativeEventFilter(eventFilter);
 }
 
 const QList<QString> Buffer::getAcceptedApps() {
