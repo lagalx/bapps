@@ -24,15 +24,15 @@ bool EventFilter::nativeEventFilter(const QByteArray &eventType, void *message,
       qDebug() << "Hotkey worked";
 
       const auto appName = Buffer::getFocusAppName();
-      qDebug() << "Focused app is "<< appName;
+      qDebug() << "Focused app is " << appName;
 
       const auto isAccepted = Buffer::isAppAccepted(appName);
-      qDebug() << "Is app accepted? - " << isAccepted ;
-      if (!isAccepted) return false;
+      qDebug() << "Is app accepted? - " << isAccepted;
+      if (!isAccepted)
+        return false;
 
       //      QClipboard *clipboard = QGuiApplication::clipboard();
       //      const QString originalText = clipboard->text();
-
 
       Buffer::sendInput(propText);
 

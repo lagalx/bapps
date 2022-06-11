@@ -63,8 +63,9 @@ void Buffer::setEventListner(const QString propText) {
 
 const QList<QString> Buffer::getAcceptedApps() {
 
-  const QSettings browsersRegList("HKEY_LOCAL_MACHINE\\SOFTWARE\\Clients\\StartMenuInternet",
-                     QSettings::NativeFormat);
+  const QSettings browsersRegList(
+      "HKEY_LOCAL_MACHINE\\SOFTWARE\\Clients\\StartMenuInternet",
+      QSettings::NativeFormat);
   const QStringList browsersInRegList = browsersRegList.childGroups();
 
   QStringList res;
@@ -79,7 +80,8 @@ const QList<QString> Buffer::getAcceptedApps() {
     auto browserExeStr = browserExe.toString();
     browserExeStr.chop(1);
 
-    const auto finalBrowserStr = browserExeStr.split("\\").back().split('.').front();
+    const auto finalBrowserStr =
+        browserExeStr.split("\\").back().split('.').front();
 
     res.append(finalBrowserStr);
   }
