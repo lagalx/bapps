@@ -25,12 +25,12 @@ const QString Buffer::getFocusAppName() {
 
   GetWindowThreadProcessId(focused, &dwProcId);
 
-  auto handle =
+  const auto handle =
       OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, dwProcId);
   QueryFullProcessImageNameA(handle, FALSE, buffer, &bufSize);
 
-  QString str = QString::fromUtf8(buffer);
-  auto appName = str.split("\\").back().split('.').front();
+  const QString str = QString::fromUtf8(buffer);
+  const auto appName = str.split("\\").back().split('.').front();
 
   return appName;
 }
@@ -50,8 +50,8 @@ const bool Buffer::sendInput(const QString text) {
     vec.push_back(input);
   }
 
-  auto inputRes = SendInput(vec.size(), vec.data(), sizeof(INPUT));
-  auto res = inputRes == vec.size();
+  const auto inputRes = SendInput(vec.size(), vec.data(), sizeof(INPUT));
+  const auto res = inputRes == vec.size();
 
   return res;
 }
@@ -63,27 +63,30 @@ void Buffer::setEventListner(const QString propText) {
 
 const QList<QString> Buffer::getAcceptedApps() {
 
-  QSettings browsers("HKEY_LOCAL_MACHINE\\SOFTWARE\\Clients\\StartMenuInternet",
+  const QSettings browsersRegList("HKEY_LOCAL_MACHINE\\SOFTWARE\\Clients\\StartMenuInternet",
                      QSettings::NativeFormat);
-  QStringList val = browsers.childGroups();
+  const QStringList browsersInRegList = browsersRegList.childGroups();
 
-  QStringList processBrowser;
-  for (auto i : val) {
-    QString path =
-        "HKEY_LOCAL_MACHINE\\SOFTWARE\\Clients\\StartMenuInternet\\" + i +
+  QStringList res;
+  for (auto browser : browsersInRegList) {
+
+    const QString path =
+        "HKEY_LOCAL_MACHINE\\SOFTWARE\\Clients\\StartMenuInternet\\" + browser +
         "\\shell\\open\\command";
-    QSettings openBrowser(path, QSettings::NativeFormat);
-    auto exeBrowser = openBrowser.value(".");
-    auto exeBrowserstr = exeBrowser.toString();
-    exeBrowserstr.chop(1);
-    auto finalBrowser = exeBrowserstr.split("\\").back().split('.').front();
-    processBrowser.append(finalBrowser);
+    const QSettings openBrowser(path, QSettings::NativeFormat);
+
+    const auto browserExe = openBrowser.value(".");
+    auto browserExeStr = browserExe.toString();
+    browserExeStr.chop(1);
+
+    const auto finalBrowserStr = browserExeStr.split("\\").back().split('.').front();
+
+    res.append(finalBrowserStr);
   }
 
-  return processBrowser;
+  return res;
 }
 
 const bool Buffer::isAppAccepted(const QString appName) {
-
   return getAcceptedApps().contains(appName);
 }

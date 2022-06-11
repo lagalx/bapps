@@ -15,7 +15,7 @@ bool EventFilter::nativeEventFilter(const QByteArray &eventType, void *message,
   Q_UNUSED(result)
 
   // Transform the message pointer to the MSG WinAPI
-  MSG *msg = reinterpret_cast<MSG *>(message);
+  const MSG *msg = reinterpret_cast<MSG *>(message);
 
   // If the message is a HotKey, then ...
   if (msg->message == WM_HOTKEY) {
@@ -23,13 +23,16 @@ bool EventFilter::nativeEventFilter(const QByteArray &eventType, void *message,
     if (msg->wParam == Buffer::HOTKEY_CODE) {
       qDebug() << "Hotkey worked";
 
-      auto appName = Buffer::getFocusAppName();
-      qDebug() << appName << "APP";
+      const auto appName = Buffer::getFocusAppName();
+      qDebug() << "Focused app is "<< appName;
 
-      qDebug() << Buffer::isAppAccepted(appName);
+      const auto isAccepted = Buffer::isAppAccepted(appName);
+      qDebug() << "Is app accepted? - " << isAccepted ;
+      if (!isAccepted) return false;
 
       //      QClipboard *clipboard = QGuiApplication::clipboard();
       //      const QString originalText = clipboard->text();
+
 
       Buffer::sendInput(propText);
 
