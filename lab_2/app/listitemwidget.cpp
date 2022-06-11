@@ -55,7 +55,7 @@ void ListItemWidget::on_copyLoginButton_clicked() {
   obj = isShowed? pp.cryptoQJO(obj): obj;
 
   const auto text  =obj.value(pp.DATA_KEYS.LOGIN).toString();
-  Buffer::setEventListner(text);
+  Buffer::setEventListner(text, pp);
 }
 
 void ListItemWidget::on_copyPasswordButton_clicked()
@@ -68,6 +68,6 @@ void ListItemWidget::on_copyPasswordButton_clicked()
 
 
     const auto text  =obj.value(pp.DATA_KEYS.PASSWORD).toString();
-    Buffer::setEventListner(text);
+    Buffer::setEventListner(text, pp);
 }
 

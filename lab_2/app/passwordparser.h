@@ -47,6 +47,8 @@ public:
 
   const QJO cryptoQJO(const QJO jObj);
   const QJO plainQJO(const QJO jObj);
+
+  const QString decryptStr(const QString text);
 };
 
 #endif // PASSWORDPARSER_H

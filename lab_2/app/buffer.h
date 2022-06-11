@@ -7,6 +7,9 @@
 
 #include <QList>
 #include <QMainWindow>
+#include "passwordparser.h"
+
+using PP = PasswordParser;
 
 class Buffer {
 public:
@@ -17,7 +20,7 @@ public:
   const static QString getFocusAppName();
 
   const static bool sendInput(const QString text);
-  static void setEventListner(const QString propText);
+  static void setEventListner(const QString propText, const PP pp);
 
   const static QList<QString> getAcceptedApps();
   const static bool isAppAccepted(const QString appName);

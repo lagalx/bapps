@@ -8,7 +8,8 @@
 
 #include "buffer.h"
 
-EventFilter::EventFilter(const QString propText) { this->propText = propText; }
+EventFilter::EventFilter(const QString propText, PP pp) { this->propText = propText;
+                                                        this->pp =pp;}
 bool EventFilter::nativeEventFilter(const QByteArray &eventType, void *message,
                                     qintptr *result) {
   Q_UNUSED(eventType)
@@ -24,17 +25,17 @@ bool EventFilter::nativeEventFilter(const QByteArray &eventType, void *message,
       qDebug() << "Hotkey worked";
 
       const auto appName = Buffer::getFocusAppName();
-      qDebug() << "Focused app is " << appName;
+      qDebug() << "Focused app is" << appName;
 
       const auto isAccepted = Buffer::isAppAccepted(appName);
-      qDebug() << "Is app accepted? - " << isAccepted;
+      qDebug() << "Is app accepted? -" << isAccepted;
       if (!isAccepted)
         return false;
 
       //      QClipboard *clipboard = QGuiApplication::clipboard();
       //      const QString originalText = clipboard->text();
 
-      Buffer::sendInput(propText);
+      Buffer::sendInput(pp.decryptStr(propText));
 
       return true;
     }
