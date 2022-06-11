@@ -48,5 +48,26 @@ void ListItemWidget::on_showDataButton_clicked() {
 }
 
 void ListItemWidget::on_copyLoginButton_clicked() {
-  Buffer::setEventListner(ui->loginEdit->text());
+  auto login = ui->loginEdit->text();
+  auto password = ui->passwordEdit->text();
+  auto url = ui->urlEdit->text();
+  auto obj = pp.getQJO(url,login,password);
+  obj = isShowed? pp.cryptoQJO(obj): obj;
+
+  const auto text  =obj.value(pp.DATA_KEYS.LOGIN).toString();
+  Buffer::setEventListner(text);
 }
+
+void ListItemWidget::on_copyPasswordButton_clicked()
+{
+    auto login = ui->loginEdit->text();
+    auto password = ui->passwordEdit->text();
+    auto url = ui->urlEdit->text();
+    auto obj = pp.getQJO(url,login,password);
+    obj = isShowed? pp.cryptoQJO(obj): obj;
+
+
+    const auto text  =obj.value(pp.DATA_KEYS.PASSWORD).toString();
+    Buffer::setEventListner(text);
+}
+
