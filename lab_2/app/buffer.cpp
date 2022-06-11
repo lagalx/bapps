@@ -1,5 +1,5 @@
 #include "buffer.h"
-
+#include "QTimer"
 #include "eventfilter.h"
 #include <QAbstractEventDispatcher>
 #include <QSettings>
@@ -56,9 +56,19 @@ const bool Buffer::sendInput(const QString text) {
   return res;
 }
 
+inline void delay(int millisecondsWait) {
+    QEventLoop loop;
+    QTimer t;
+    t.connect(&t, &QTimer::timeout, &loop, &QEventLoop::quit);
+    t.start(millisecondsWait);
+    loop.exec();
+}
+
 void Buffer::setEventListner(const QString propText, const PP pp) {
-  QAbstractEventDispatcher::instance()->installNativeEventFilter(
-      new EventFilter(propText, pp));
+    auto eventFilter = new EventFilter(propText, pp);
+    QAbstractEventDispatcher::instance()->installNativeEventFilter(eventFilter);
+    delay(1000*20);
+    QAbstractEventDispatcher::instance()->removeNativeEventFilter(eventFilter);
 }
 
 const QList<QString> Buffer::getAcceptedApps() {
