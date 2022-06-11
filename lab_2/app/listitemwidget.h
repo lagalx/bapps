@@ -14,7 +14,7 @@ class ListItemWidget;
 class ListItemWidget : public QWidget {
   Q_OBJECT
 
- public:
+public:
   explicit ListItemWidget(PP &pp, QWidget *parent = nullptr);
   ~ListItemWidget();
   PP pp;
@@ -23,7 +23,7 @@ class ListItemWidget : public QWidget {
   void setData(const QJO jObj);
   const QString getData();
 
- private slots:
+private slots:
   void on_showDataButton_clicked();
 
   void on_copyLoginButton_clicked();
@@ -32,4 +32,4 @@ private:
   Ui::ListItemWidget *ui;
 };
 
-#endif  // LISTITEMWIDGET_H
+#endif // LISTITEMWIDGET_H

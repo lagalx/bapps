@@ -7,12 +7,13 @@
 #include <QAbstractNativeEventFilter>
 
 class EventFilter : public QAbstractNativeEventFilter {
- public:
+public:
   EventFilter(const QString propText);
-  bool nativeEventFilter(const QByteArray &eventType, void *message, qintptr *) Q_DECL_OVERRIDE;
+  bool nativeEventFilter(const QByteArray &eventType, void *message,
+                         qintptr *) Q_DECL_OVERRIDE;
 
 private:
   QString propText;
 };
 
-#endif  // EVENTFILTER_H
+#endif // EVENTFILTER_H

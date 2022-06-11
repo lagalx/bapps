@@ -16,17 +16,17 @@ QT_END_NAMESPACE
 class MainWindow : public QMainWindow {
   Q_OBJECT
 
- public:
+public:
   MainWindow(QWidget *parent = nullptr);
   ~MainWindow();
 
- private slots:
+private slots:
   void on_loginButton_clicked();
 
   void on_passwordEdit_textChanged(const QString &text);
 
- private:
+private:
   Ui::MainWindow *ui;
   PWindow *pWindow;
 };
-#endif  // MAINWINDOW_H
+#endif // MAINWINDOW_H

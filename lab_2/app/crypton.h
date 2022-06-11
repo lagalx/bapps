@@ -9,7 +9,7 @@
 using QBA = QByteArray;
 
 class Crypton {
- public:
+public:
   Crypton();
   Crypton(const QString password);
   QBA password;
@@ -20,4 +20,4 @@ class Crypton {
   const QString decrypt(QString text);
 };
 
-#endif  // CRYPTON_H
+#endif // CRYPTON_H

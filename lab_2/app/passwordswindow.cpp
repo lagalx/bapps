@@ -20,7 +20,6 @@ PasswordsWindow::PasswordsWindow(PP &pp, QWidget *parent)
     : QMainWindow(parent), ui(new Ui::PasswordsWindow) {
   ui->setupUi(this);
 
-
   this->pp = pp;
 
   for (auto i : pp.jArr) {

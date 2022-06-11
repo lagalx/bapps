@@ -14,19 +14,19 @@ class PasswordsWindow;
 class PasswordsWindow : public QMainWindow {
   Q_OBJECT
 
- public:
+public:
   explicit PasswordsWindow(PP &pp, QWidget *parent = nullptr);
   ~PasswordsWindow();
   PP pp;
   void addListItem(QJO jObj);
 
- private slots:
+private slots:
   void on_addButton_clicked();
 
   void on_searchEdit_textEdited(const QString &text);
 
- private:
+private:
   Ui::PasswordsWindow *ui;
 };
 
-#endif  // PASSWORDSWINDOW_H
+#endif // PASSWORDSWINDOW_H

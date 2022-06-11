@@ -9,18 +9,17 @@ namespace Ui {
 class AddListItemDialog;
 }
 
-class AddListItemDialog : public QDialog
-{
-    Q_OBJECT
+class AddListItemDialog : public QDialog {
+  Q_OBJECT
 
 public:
-    explicit AddListItemDialog(QWidget *parent = nullptr);
-    ~AddListItemDialog();
+  explicit AddListItemDialog(QWidget *parent = nullptr);
+  ~AddListItemDialog();
 
-    QJO getDialogData();
+  QJO getDialogData();
 
 private:
-    Ui::AddListItemDialog *ui;
+  Ui::AddListItemDialog *ui;
 };
 
 #endif // ADDLISTITEMDIALOG_H

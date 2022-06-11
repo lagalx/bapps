@@ -1,18 +1,18 @@
 #include "buffer.h"
 
+#include "eventfilter.h"
 #include <QAbstractEventDispatcher>
 #include <QSettings>
-#include "eventfilter.h"
 
 const int Buffer::HOTKEY_CODE = 100;
 
 Buffer::Buffer() {}
 
 void Buffer::registerHotKey(const WId winId, const char key) {
-  RegisterHotKey((HWND)winId,  // Set the system identifier of the widget
-                               // window that will handle the HotKey
-                 HOTKEY_CODE,  // Set identifier HotKey
-                 MOD_CONTROL | MOD_SHIFT | MOD_ALT,  // Set modifiers
+  RegisterHotKey((HWND)winId, // Set the system identifier of the widget
+                              // window that will handle the HotKey
+                 HOTKEY_CODE, // Set identifier HotKey
+                 MOD_CONTROL | MOD_SHIFT | MOD_ALT, // Set modifiers
                  key);
 }
 
@@ -63,25 +63,27 @@ void Buffer::setEventListner(const QString propText) {
 
 const QList<QString> Buffer::getAcceptedApps() {
 
-    QSettings browsers("HKEY_LOCAL_MACHINE\\SOFTWARE\\Clients\\StartMenuInternet",
-    QSettings::NativeFormat);
-    QStringList val = browsers.childGroups();
+  QSettings browsers("HKEY_LOCAL_MACHINE\\SOFTWARE\\Clients\\StartMenuInternet",
+                     QSettings::NativeFormat);
+  QStringList val = browsers.childGroups();
 
-    QStringList processBrowser;
-    for(auto i:val){
-        QString path = "HKEY_LOCAL_MACHINE\\SOFTWARE\\Clients\\StartMenuInternet\\"+i+"\\shell\\open\\command";
-        QSettings openBrowser(path,QSettings::NativeFormat);
-        auto exeBrowser = openBrowser.value(".");
-        auto exeBrowserstr= exeBrowser.toString();
-        exeBrowserstr.chop(1);
-        auto finalBrowser = exeBrowserstr.split("\\").back().split('.').front();
-        processBrowser.append(finalBrowser);
-    }
-
+  QStringList processBrowser;
+  for (auto i : val) {
+    QString path =
+        "HKEY_LOCAL_MACHINE\\SOFTWARE\\Clients\\StartMenuInternet\\" + i +
+        "\\shell\\open\\command";
+    QSettings openBrowser(path, QSettings::NativeFormat);
+    auto exeBrowser = openBrowser.value(".");
+    auto exeBrowserstr = exeBrowser.toString();
+    exeBrowserstr.chop(1);
+    auto finalBrowser = exeBrowserstr.split("\\").back().split('.').front();
+    processBrowser.append(finalBrowser);
+  }
 
   return processBrowser;
 }
 
 const bool Buffer::isAppAccepted(const QString appName) {
 
-    return  getAcceptedApps().contains(appName); }
+  return getAcceptedApps().contains(appName);
+}

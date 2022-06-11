@@ -9,7 +9,7 @@
 #include <QMainWindow>
 
 class Buffer {
- public:
+public:
   Buffer();
 
   const static int HOTKEY_CODE;
@@ -23,4 +23,4 @@ class Buffer {
   const static bool isAppAccepted(const QString appName);
 };
 
-#endif  // BUFFER_H
+#endif // BUFFER_H

@@ -3,8 +3,8 @@
 #include <QClipboard>
 #include <QDebug>
 #include <QGuiApplication>
-#include <QString>
 #include <QSettings>
+#include <QString>
 
 #include "buffer.h"
 
@@ -24,14 +24,9 @@ bool EventFilter::nativeEventFilter(const QByteArray &eventType, void *message,
       qDebug() << "Hotkey worked";
 
       auto appName = Buffer::getFocusAppName();
-      qDebug() << appName <<"APP";
+      qDebug() << appName << "APP";
 
-
-      qDebug()<< Buffer::isAppAccepted(appName);
-
-
-
-
+      qDebug() << Buffer::isAppAccepted(appName);
 
       //      QClipboard *clipboard = QGuiApplication::clipboard();
       //      const QString originalText = clipboard->text();

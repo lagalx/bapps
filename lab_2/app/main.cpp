@@ -29,9 +29,9 @@ const QByteArray HASH = "wfMfoazt3lGPvsEAclKod42khn5LvHle8gNsEqoQSXE=";
 
 QProcess *startSattelite() {
   if (!QFileInfo::exists(PROTECTOR_PATH)) {
-    QMessageBox::critical(
-        nullptr, "Error",
-        QFileInfo(PROTECTOR_PATH).absoluteFilePath() + " Not Found");
+    QMessageBox::critical(nullptr, "Error",
+                          QFileInfo(PROTECTOR_PATH).absoluteFilePath() +
+                              " Not Found");
     exit(-1);
   }
 
@@ -60,16 +60,16 @@ bool isDebuggerPresent() {
 bool isAppPatched() {
   // 1 Определение начала сегмента .text
   QWORD moduleBase = (QWORD)GetModuleHandle(
-      NULL);  // начальный адрес приложения в виртуальной памяти/
-  QWORD text_segment_start = moduleBase + 0x1000;  // адрес сегмента .text/
+      NULL); // начальный адрес приложения в виртуальной памяти/
+  QWORD text_segment_start = moduleBase + 0x1000; // адрес сегмента .text/
   qDebug() << "text_segment_start = " << Qt::hex << text_segment_start;
 
   // 2 Определение длины сегмента .text
   PIMAGE_DOS_HEADER pIDH = reinterpret_cast<PIMAGE_DOS_HEADER>(moduleBase);
   PIMAGE_NT_HEADERS pINH =
       reinterpret_cast<PIMAGE_NT_HEADERS>(moduleBase + pIDH->e_lfanew);
-  QWORD size_of_text = pINH->OptionalHeader.SizeOfCode;  // размер сегмента
-                                                         // .text
+  QWORD size_of_text = pINH->OptionalHeader.SizeOfCode; // размер сегмента
+                                                        // .text
   qDebug() << "size_of_text = " << size_of_text;
 
   // 3 Подсчет хэша и его шифрование
@@ -104,7 +104,7 @@ int main(int argc, char *argv[]) {
 
   w.show();
 
-  Buffer::registerHotKey(w.winId(),'D');
+  Buffer::registerHotKey(w.winId(), 'D');
 
   //  auto p = startSattelite();
 
@@ -113,5 +113,5 @@ int main(int argc, char *argv[]) {
   //    exit(-1);
   //  }
 
-  return a.exec();  //, killPD(p);
+  return a.exec(); //, killPD(p);
 }

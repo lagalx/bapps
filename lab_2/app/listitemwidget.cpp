@@ -4,7 +4,7 @@
 
 using LIW = ListItemWidget;
 
-LIW::ListItemWidget(PP& pp, QWidget* parent)
+LIW::ListItemWidget(PP &pp, QWidget *parent)
     : QWidget(parent), ui(new Ui::ListItemWidget) {
   ui->setupUi(this);
   this->pp = pp;
@@ -23,9 +23,7 @@ void LIW::setData(const QJO jObj) {
   ui->urlEdit->setText(url.toString());
 }
 
-const QString LIW::getData(){
-    return ui->urlEdit->text();
-}
+const QString LIW::getData() { return ui->urlEdit->text(); }
 
 void ListItemWidget::on_showDataButton_clicked() {
   auto login = ui->loginEdit->text();
@@ -49,8 +47,6 @@ void ListItemWidget::on_showDataButton_clicked() {
   ui->urlEdit->setText(url);
 }
 
-void ListItemWidget::on_copyLoginButton_clicked()
-{
-    Buffer::setEventListner(ui->loginEdit->text());
+void ListItemWidget::on_copyLoginButton_clicked() {
+  Buffer::setEventListner(ui->loginEdit->text());
 }
-

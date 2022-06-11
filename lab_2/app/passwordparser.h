@@ -22,7 +22,7 @@ struct DataKeys {
 };
 
 class PasswordParser {
- public:
+public:
   PasswordParser();
   PasswordParser(const QString password, const QString filePath);
 
@@ -49,4 +49,4 @@ class PasswordParser {
   const QJO plainQJO(const QJO jObj);
 };
 
-#endif  // PASSWORDPARSER_H
+#endif // PASSWORDPARSER_H
