@@ -1,0 +1,17 @@
+name: CI
+
+on: push
+
+jobs:
+  checkout:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+  lint:
+    name: clang-format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: lagalx/clang-format-action@clang9
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
