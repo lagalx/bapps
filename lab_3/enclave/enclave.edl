@@ -1,0 +1,7 @@
+/* описание импортируемых функция для анклава */
+enclave {
+    trusted { 
+        /* define ECALLs here. */
+        public void request_to_table([out, size=len] char* buf, size_t len, size_t idx); /* объявление функции */
+    };
+};
