@@ -12,7 +12,7 @@ const char table[6][41] = {
 };
 
 //функция для запроса к таблице
-void request_to_table(char* buf, size_t len, size_t idx) {
+void foo(char* buf, size_t len, size_t idx) {
     if (idx < 5) {
         const char* data_ptr = data_ptr = table[idx];
         memcpy(buf, data_ptr, strlen(data_ptr + 1));
